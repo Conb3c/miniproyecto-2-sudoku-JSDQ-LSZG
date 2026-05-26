@@ -3,6 +3,8 @@ module com.example.miniproyecto2sudokujsdqlszg {
     requires javafx.fxml;
 
 
-    opens com.example.miniproyecto2sudokujsdqlszg to javafx.fxml;
-    exports com.example.miniproyecto2sudokujsdqlszg;
+    opens Model to javafx.fxml;
+    opens Controller to javafx.fxml;
+    exports Model;
+    exports Controller;
 }
