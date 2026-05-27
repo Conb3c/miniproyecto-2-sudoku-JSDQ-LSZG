@@ -11,7 +11,5 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        dataOfTree myData = new dataOfTree();
-        myData.myTree.printTree(myData.myTree.root);
     }
 }

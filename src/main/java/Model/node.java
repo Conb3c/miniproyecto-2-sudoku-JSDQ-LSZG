@@ -35,20 +35,4 @@ public class node {
         children.add(child);
         child.father = this;
     }
-
-    public Integer getData() {
-        return data;
-    }
-
-    public void setData(Integer data) {
-        this.data = data;
-    }
-
-    public boolean getIsItVisible() {
-        return isItVisible;
-    }
-
-    public void setIsItVisible(boolean isItVisible) {
-        this.isItVisible = isItVisible;
-    }
 }
