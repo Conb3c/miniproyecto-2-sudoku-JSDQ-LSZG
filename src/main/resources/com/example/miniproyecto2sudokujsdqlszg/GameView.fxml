@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="560" prefWidth="900" style="-fx-background-color: #F5F5F0;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<BorderPane prefHeight="560" prefWidth="900" style="-fx-background-color: #F5F5F0;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
 
     <!-- ===== TOP: Header ===== -->
     <top>
         <VBox alignment="CENTER" spacing="2">
             <padding><Insets bottom="6.0" top="40.0" /></padding>
             <Label alignment="CENTER" style="-fx-font-family: 'Georgia'; -fx-font-size: 45px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A;" text="SUDOKU" textAlignment="CENTER">
-            <font>
-               <Font name="Century Schoolbook" size="24.0" />
-            </font>
-            <padding>
-               <Insets right="20.0" />
-            </padding></Label>
+                <font>
+                    <Font name="Century Schoolbook" size="24.0" />
+                </font>
+                <padding>
+                    <Insets right="20.0" />
+                </padding></Label>
         </VBox>
     </top>
 
@@ -25,6 +33,23 @@
     <center>
         <HBox alignment="CENTER" prefHeight="435.0" prefWidth="900.0" spacing="40">
             <padding><Insets bottom="20.0" left="60.0" right="40.0" top="10.0" /></padding>
+
+            <!-- LEFT PANEL -->
+            <VBox alignment="TOP_CENTER" prefWidth="110" spacing="16">
+                <VBox alignment="CENTER_LEFT" prefWidth="100" spacing="2" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);">
+                    <padding><Insets bottom="10" left="14" right="14" top="10" /></padding>
+                    <Label style="-fx-font-family: 'Arial'; -fx-font-size: 9px; -fx-font-weight: bold; -fx-letter-spacing: 1.5; -fx-text-fill: #AAAAAA;" text="TIMER" />
+                    <Label fx:id="timerLabel" style="-fx-font-family: 'Arial'; -fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A;" text="00:00" />
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefWidth="100" spacing="2" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);">
+                    <padding><Insets bottom="10" left="14" right="14" top="10" /></padding>
+                    <Label style="-fx-font-family: 'Arial'; -fx-font-size: 9px; -fx-font-weight: bold; -fx-letter-spacing: 1.5; -fx-text-fill: #AAAAAA;" text="ERRORS" />
+                    <Label fx:id="errorsLabel" style="-fx-font-family: 'Arial'; -fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #E05252;" text="00/03" />
+                </VBox>
+            </VBox>
 
             <!-- SUDOKU GRID 6x6 con TextField editables -->
             <StackPane maxHeight="364" maxWidth="364" prefHeight="364" prefWidth="364" style="-fx-background-color: white; -fx-border-color: #2C5F8A; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-radius: 4;">
@@ -42,11 +67,11 @@
                         <RowConstraints fillHeight="true" maxHeight="60" minHeight="60" prefHeight="60" />
                         <RowConstraints fillHeight="true" maxHeight="60" minHeight="60" prefHeight="60" />
                         <RowConstraints fillHeight="true" maxHeight="60" minHeight="60" prefHeight="60" />
-                  <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+                        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
                         <RowConstraints fillHeight="true" maxHeight="60" minHeight="60" prefHeight="60" />
                     </rowConstraints>
 
-                    <!-- 
+                    <!--
                         CELDAS FIJAS (dadas por el puzzle): editable="false", texto negro/azul
                         CELDAS VACÍAS (el usuario las llena): editable="true", texto azul
                         El estilo base incluye borde derecho/inferior fino.
@@ -89,9 +114,9 @@
 
                     <!-- ROW 4 — borde inferior GRUESO (límite de caja) -->
                     <TextField fx:id="cell_4_0" editable="false" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #2C5F8A transparent; -fx-border-width: 0 1 2 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="5" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                  <GridPane.margin>
-                     <Insets />
-                  </GridPane.margin></TextField>
+                        <GridPane.margin>
+                            <Insets />
+                        </GridPane.margin></TextField>
                     <TextField fx:id="cell_4_1" editable="false" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #2C5F8A transparent; -fx-border-width: 0 1 2 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="6" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                     <TextField fx:id="cell_4_2" editable="false" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A; -fx-alignment: center; -fx-border-color: #D0D8E4 #2C5F8A #2C5F8A transparent; -fx-border-width: 0 2 2 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                     <TextField fx:id="cell_4_3" editable="false" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #2C5F8A transparent; -fx-border-width: 0 1 2 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="1" GridPane.columnIndex="3" GridPane.rowIndex="3" />
@@ -105,12 +130,12 @@
                     <TextField fx:id="cell_5_3" editable="false" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: transparent #D0D8E4 transparent transparent; -fx-border-width: 0 1 0 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="2" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                     <TextField fx:id="cell_5_4" editable="false" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: transparent #D0D8E4 transparent transparent; -fx-border-width: 0 1 0 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="3" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                     <TextField fx:id="cell_5_5" editable="false" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A; -fx-alignment: center; -fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="1" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-               <TextField fx:id="cell_0_11" editable="false" layoutX="70.0" layoutY="10.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="2" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-               <TextField fx:id="cell_0_111" editable="false" layoutX="250.0" layoutY="250.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="2" GridPane.rowIndex="4" />
-               <TextField fx:id="cell_0_112" editable="false" layoutX="250.0" layoutY="250.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-               <TextField fx:id="cell_0_21" editable="false" layoutX="130.0" layoutY="10.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: #D0D8E4 #2C5F8A #D0D8E4 transparent; -fx-border-width: 0 2 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="3" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-               <TextField fx:id="cell_0_01" editable="false" layoutX="10.0" layoutY="10.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="1" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-               <TextField fx:id="cell_3_41" editable="false" layoutX="250.0" layoutY="130.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="1" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                    <TextField fx:id="cell_0_11" editable="false" layoutX="70.0" layoutY="10.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="2" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                    <TextField fx:id="cell_0_111" editable="false" layoutX="250.0" layoutY="250.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="2" GridPane.rowIndex="4" />
+                    <TextField fx:id="cell_0_112" editable="false" layoutX="250.0" layoutY="250.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C5F8A; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <TextField fx:id="cell_0_21" editable="false" layoutX="130.0" layoutY="10.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: #D0D8E4 #2C5F8A #D0D8E4 transparent; -fx-border-width: 0 2 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="3" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                    <TextField fx:id="cell_0_01" editable="false" layoutX="10.0" layoutY="10.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="1" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                    <TextField fx:id="cell_3_41" editable="false" layoutX="250.0" layoutY="130.0" maxHeight="60" maxWidth="60" prefHeight="60" prefWidth="60" style="-fx-background-color: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A1A2E; -fx-alignment: center; -fx-border-color: #D0D8E4 #D0D8E4 #D0D8E4 transparent; -fx-border-width: 0 1 1 0; -fx-background-radius: 0; -fx-border-radius: 0;" text="1" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                 </GridPane>
             </StackPane>
 
@@ -138,9 +163,9 @@
                 <Button fx:id="helpButton" onAction="#onHelpClicked" prefHeight="40" prefWidth="152" style="-fx-background-color: linear-gradient(to right, #7EC8E3, #F0E080); -fx-text-fill: #2C2C2C; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 6, 0, 0, 1); -fx-cursor: hand;" text="💡  HELP" />
                 <Button fx:id="newGameButton" onAction="#onNewGameClicked" prefHeight="36" prefWidth="152" style="-fx-background-color: white; -fx-text-fill: #1A1A2E; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-color: #D0D8E4; -fx-border-width: 1; -fx-border-radius: 10; -fx-cursor: hand;" text="＋  NEW GAME" />
                 <Button fx:id="resetButton" onAction="#onResetClicked" prefHeight="36" prefWidth="152" style="-fx-background-color: white; -fx-text-fill: #1A1A2E; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-color: #D0D8E4; -fx-border-width: 1; -fx-border-radius: 10; -fx-cursor: hand;" text="↺  RESET" />
-            <HBox.margin>
-               <Insets top="15.0" />
-            </HBox.margin>
+                <HBox.margin>
+                    <Insets top="15.0" />
+                </HBox.margin>
             </VBox>
         </HBox>
     </center>
