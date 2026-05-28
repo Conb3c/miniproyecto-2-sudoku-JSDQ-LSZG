@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.miniproyecto2sudokujsdqlszg/com.example.miniproyecto2sudokujsdqlszg.HelloApplication
+                                com.example.miniproyecto2sudokujsdqlszg/Model.main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
