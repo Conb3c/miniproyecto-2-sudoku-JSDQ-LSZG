@@ -51,4 +51,14 @@ public class node {
     public void setIsItVisible(boolean isItVisible) {
         this.isItVisible = isItVisible;
     }
+
+    public ArrayList<node> getChildren() { return children; }
+
+    public int getRow() { return row; }
+
+    public int getColumn() { return column; }
+
+    public int getUserValue() { return userValue; }
+
+    public void setUserValue(int userValue) { this.userValue = userValue; }
 }
