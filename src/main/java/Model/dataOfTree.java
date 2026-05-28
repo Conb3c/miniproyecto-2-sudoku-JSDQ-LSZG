@@ -3,9 +3,24 @@ package Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+/**
+ * Manages the data generation and validation logic for the Sudoku tree.
+ * <p>
+ * This class creates the tree, generates a valid 6x6 Sudoku solution,
+ * determines which numbers are visible to the player, and validates
+ * whether a number can be placed in a specific position.
+ * </p>
+ */
 
-public class dataOfTree {
+public class dataOfTree implements IdataOfTree{
     public tree myTree;
+    /**
+     * Creates a new Sudoku data manager.
+     * <p>
+     * The constructor initializes the tree, fills it with board nodes,
+     * generates a valid Sudoku solution, and selects the visible numbers.
+     * </p>
+     */
 
     public dataOfTree(){
         myTree = new tree();
@@ -13,6 +28,13 @@ public class dataOfTree {
         generateSudoku(myTree.root);
         generateVisibleNumbers();
     }
+    /**
+     * Generates a valid Sudoku solution using recursive backtracking.
+     *
+     * @param actual the current node being processed
+     * @return {@code true} if the Sudoku solution was generated successfully,
+     * otherwise {@code false}
+     */
     public boolean generateSudoku(node actual){
         if (actual == null) {
             return true;
@@ -37,9 +59,27 @@ public class dataOfTree {
         }
         return false;
     }
+    /**
+     * Checks whether a number can be placed in the given node.
+     *
+     * @param actual the node where the number is being tested
+     * @param number the number to validate
+     * @param root the root node used to traverse the tree
+     * @return {@code true} if the number is valid, otherwise {@code false}
+     */
+
     public boolean isValid(node actual, int number, node root){
         return isValidHelper(actual,number,root);
     }
+    /**
+     * Recursively validates a number against rows, columns, and quadrants.
+     *
+     * @param actual the node where the number is being tested
+     * @param number the number to validate
+     * @param path the current node used during traversal
+     * @return {@code true} if the number does not violate Sudoku rules,
+     * otherwise {@code false}
+     */
     private boolean isValidHelper(node actual, int number,node path){
         if(path.row != -1 && path != actual && path.getData() != null && path.getData() == number){
                 if(path.row == actual.row) return false;
@@ -55,6 +95,13 @@ public class dataOfTree {
         }
         return true;
     }
+    /**
+     * Selects the numbers that will be visible to the player.
+     * <p>
+     * For each quadrant, two nodes are randomly selected as visible,
+     * while the remaining nodes are hidden.
+     * </p>
+     */
     public void generateVisibleNumbers() {
         List<List<node>> quadrants = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
@@ -70,6 +117,23 @@ public class dataOfTree {
             }
         }
     }
+    /**
+     * Returns the Sudoku tree managed by this class.
+     *
+     * @return the Sudoku tree
+     */
+
+    @Override
+    public tree getMyTree() {
+        return null;
+    }
+    /**
+     * Groups Sudoku nodes by their corresponding 2x3 quadrant.
+     *
+     * @param actual the current node being processed
+     * @param quadrants the list where nodes are grouped by quadrant
+     */
+
     private void groupNodesByQuadrant(node actual, List<List<node>> quadrants) {
         if (actual == null) {
             return;

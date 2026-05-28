@@ -137,7 +137,6 @@
 
                 <Button fx:id="helpButton" onAction="#onHelpClicked" prefHeight="40" prefWidth="152" style="-fx-background-color: linear-gradient(to right, #7EC8E3, #F0E080); -fx-text-fill: #2C2C2C; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 6, 0, 0, 1); -fx-cursor: hand;" text="💡  HELP" />
                 <Button fx:id="newGameButton" onAction="#onNewGameClicked" prefHeight="36" prefWidth="152" style="-fx-background-color: white; -fx-text-fill: #1A1A2E; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-color: #D0D8E4; -fx-border-width: 1; -fx-border-radius: 10; -fx-cursor: hand;" text="＋  NEW GAME" />
-                <Button fx:id="resetButton" onAction="#onResetClicked" prefHeight="36" prefWidth="152" style="-fx-background-color: white; -fx-text-fill: #1A1A2E; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-color: #D0D8E4; -fx-border-width: 1; -fx-border-radius: 10; -fx-cursor: hand;" text="↺  RESET" />
                 <HBox.margin>
                     <Insets top="15.0" />
                 </HBox.margin>
