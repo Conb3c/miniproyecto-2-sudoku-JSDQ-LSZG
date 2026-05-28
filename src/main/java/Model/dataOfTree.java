@@ -37,9 +37,11 @@ public class dataOfTree {
         }
         return false;
     }
-    public boolean isValid(node actual, int number, node path){
-        if(path.row != -1 && path != actual){
-            if(path.getData() != null && path.getData() == number){
+    public boolean isValid(node actual, int number, node root){
+        return isValidHelper(actual,number,root);
+    }
+    private boolean isValidHelper(node actual, int number,node path){
+        if(path.row != -1 && path != actual && path.getData() != null && path.getData() == number){
                 if(path.row == actual.row) return false;
                 if(path.column == actual.column) return false;
 
@@ -47,7 +49,7 @@ public class dataOfTree {
                 int quadrantPath = (path.row / 2) * 2 + (path.column / 3);
                 if(quadrantActual == quadrantPath) return false;
             }
-        }
+
         for(node son : path.children){
             if(!isValid(actual, number, son)) return false;
         }

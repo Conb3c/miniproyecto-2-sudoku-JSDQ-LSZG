@@ -22,40 +22,58 @@ public class GameController {
     @FXML
     public void initialize() {
         data = new dataOfTree();
-        loadBoard();
+        buildBoard();
     }
 
-    private void loadBoard(){
+    private void buildBoard(){
+        sudokuGrid.getChildren().clear();
+        cellMap.clear();
+
         node current = data.myTree.getRoot();
         while(!current.getChildren().isEmpty()){
             current = current.getChildren().get(0);
 
-            String key = current.getRow() + "_" + current.getColumn();
-            TextField tf = (TextField) sudokuGrid.lookup("#cell_" + key);
+            int r = current.getRow();
+            int c = current.getColumn();
+            String key = r + "_" + c;
 
-            if (tf != null){
-                cellMap.put(key, tf);
+            TextField tf = new TextField();
+            tf.setId("cell_" + key);
+            tf.setPrefWidth(60);
+            tf.setPrefHeight(60);
+            tf.setAlignment(javafx.geometry.Pos.CENTER);
+
+            String borderRight = (c == 2) ? "2px" : "1px";
+            String borderBottom = (r == 1 || r == 3) ? "2px" : "1px";
+            tf.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;" +
+                    "-fx-border-color: #AAAAAA; -fx-border-width: 0 " + borderRight + " " + borderBottom + " 0;" +
+                    "-fx-background-color: white;"
+            );
 
                 if (current.getIsItVisible()){
                     tf.setText(String.valueOf(current.getData()));
                     tf.setEditable(false);
+                    tf.setStyle(tf.getStyle() + "-fx-text-fill: #2C5F8A;");
                 } else {
                     tf.setText("");
                     tf.setEditable(true);
 
                     tf.setOnKeyReleased(this::onCellKeyReleased);
 
-                    int r = current.getRow();
-                    int c = current.getColumn();
+                    final int finalR = r;
+                    final int finalC = c;
                     tf.focusedProperty().addListener((observable, oldValue, newValue) ->{
                         if (newValue){
                             selectedCell = tf;
-                            selectedRow = r;
-                            selectedCol = c;
+                            selectedRow = finalR;
+                            selectedCol = finalC;
                         }
                     });
                 }
-            }
+            cellMap.put(key,tf);
+            GridPane.setRowIndex(tf, r);
+            GridPane.setColumnIndex(tf, c);
+            sudokuGrid.getChildren().add(tf);
         }
     }
 
@@ -73,6 +91,7 @@ public class GameController {
         onResetClicked(actionEvent);
     }
 
+    @FXML
     public void onHelpClicked(ActionEvent actionEvent) {
         node current = data.myTree.getRoot();
         while (!current.getChildren().isEmpty()){
@@ -98,7 +117,7 @@ public class GameController {
         selectedCell = null;
         selectedRow = -1;
         selectedCol = -1;
-        loadBoard();
+        buildBoard();
     }
 
     @FXML
