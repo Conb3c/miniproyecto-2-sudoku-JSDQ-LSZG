@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class dataOfTree {
-    tree myTree;
+    public tree myTree;
 
     public dataOfTree(){
         myTree = new tree();
